@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 from Tkinter import *
-import Tkinter, tkSimpleDialog
+
 
 class Authenticator(object):
-    def __init__(self):
+    def __init__(self, u="", p=""):
         super(Authenticator, self).__init__()
-        self.username = ""
-        self.password = ""
-        self.getCredentials()
+        self.username = u
+        self.password = p
+        if not all((self.username, self.password)):
+            self.getCredentials()
 
     def getCredentials(self):
         def onpwdentry(evt):

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-import smtplib, imaplib, time
+import imaplib
+import smtplib
+import time
 from email.mime.text import MIMEText
 
 
@@ -12,7 +14,7 @@ class MsgBuilder(object):
         self.sender = sender
 
     def build(self):
-        msg = MIMEText(self.content)
+        msg = MIMEText(self.content)  # , 'plain', 'utf-8')
         msg['Subject'] = self.subject
         msg['From'] = self.sender
         msg['To'] = self.recipient
