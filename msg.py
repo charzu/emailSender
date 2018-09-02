@@ -14,7 +14,7 @@ class MsgBuilder(object):
         self.sender = sender
 
     def build(self):
-        msg = MIMEText(self.content)
+        msg = MIMEText(self.content, 'html')
         msg['Subject'] = self.subject
         msg['From'] = self.sender
         msg['To'] = self.recipient

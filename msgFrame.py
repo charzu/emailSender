@@ -1,7 +1,21 @@
 # -*- coding: utf-8 -*-
 from Tkinter import *
 from email.mime.text import MIMEText
+import re, os
 
+
+def cleanhtml(raw_html):
+    cleanr = re.compile('<.*?>')
+    cleantext = re.sub(cleanr, '', raw_html)
+    return cleantext
+
+
+def cleanempty(text):
+    return os.linesep.join([s for s in text.splitlines() if s])
+
+
+def clean(text):
+    return cleanempty(cleanhtml(text))
 
 class MSGFrame(object):
     def __init__(self, msg):
@@ -26,7 +40,7 @@ class MSGFrame(object):
         fr.pack()
 
         mes = Text(fr)
-        mes.insert(INSERT, self.msg.as_string())
+        mes.insert(INSERT, clean(self.msg.as_string()))
         mes.grid(row=1, column=1)
 
         fr1 = Frame(fr)
