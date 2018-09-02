@@ -13,27 +13,14 @@ class ContentReader(object):
         with open(filename) as stdin:
             self.template = stdin.read().split("\n")
 
-    # def buildContent(self, name, paper):
-    #     self.subject = self.template[0].decode('utf-8')
-    #     text = u"\n".join(self.template[2:]).decode('utf-8')   # .encode('utf-8')
-    #     self.content = text.format(name.decode('utf-8'),
-    #                                paper.decode('utf-8')
-    #                                )
-
     def buildContent(self, name, paper):
         self.subject = self.template[0]
-        text = "\n".join(self.template[2:])  # .encode('utf-8')
-        print type(text)
+        text = "\n".join(self.template[2:])
 
-        _name = name.encode('utf-8')
+        _name = name.encode('utf-8')  # convert to ascii
         _paper = paper.encode('utf-8')
 
-        self.content = text.format(_name,
-                                   _paper
-                                   )
-
-    def printData(self):
-        pass
+        self.content = text.format(_name, _paper)
 
 
 if __name__ == '__main__':

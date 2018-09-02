@@ -1,0 +1,11 @@
+xlsx_path F:\Pobrane\charzoApkaLista.xlsx
+content_file content.txt
+
+sender_address charzu@vivaldi.net
+sentbox_name Sent
+
+hostSMTP smtp.vivaldi.net
+hostIMAP imap.vivaldi.net
+
+portSMTP 587
+portIMAP 993

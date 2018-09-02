@@ -10,21 +10,20 @@ class XLSXprocessor(object):
         self.worksheet = None
 
     def openFile(self):
+        self.backup()
         self.workbook = openpyxl.load_workbook(self.filename)
         self.worksheet = self.workbook.active
-
-    # def iterRows(self):
-    #     for row in self.worksheet.iter_rows(min_row=2):
-    #         yield ( cell.value for cell in row[0:4])
 
     def __iter__(self):
         for row in self.worksheet.iter_rows(min_row=2):
             yield row
-            #yield [   cell.value for cell in row[0:4]   ]
+
+    def backup(self):
+        copyfile(self.filename, self.filename + ".bak")
 
     def save(self):
-        copyfile(self.filename, self.filename + ".bak")
         self.workbook.save(self.filename)
+
 
 if __name__ == '__main__':
     xp = XLSXprocessor("C:\Users\charzewski\Downloads\charzoApkaLista.xlsx")
